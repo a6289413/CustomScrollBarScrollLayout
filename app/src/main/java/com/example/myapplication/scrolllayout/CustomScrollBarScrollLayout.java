@@ -59,6 +59,18 @@ public class CustomScrollBarScrollLayout extends FrameLayout {
 
     }
 
+    private boolean mIsOnLayout = true;
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        if (mIsOnLayout) {
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mIvScrollBar.getLayoutParams();
+            params.leftMargin = mScrollBarMarginScrollView;
+            mIvScrollBar.setLayoutParams(params);
+        }
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -75,6 +87,7 @@ public class CustomScrollBarScrollLayout extends FrameLayout {
         mPsssvScrollView.setScrollChangedListener(new ProvideScrollStateScrollView.OnScrollChangedListener() {
             @Override
             public void onScrollChanged(int l, int t, int oldl, int oldt) {
+                mIsOnLayout = false;
                 if (t >= 0 && t <= mScrollViewCanScrollHeight) {
                     mIvScrollBar.layout(mScrollBarX, (int) (mScrollBarCanScrollHeight / mScrollViewCanScrollHeight * t), mScrollBarX + mScrollBarWidth, (int) (mScrollBarCanScrollHeight / mScrollViewCanScrollHeight * t + mScrollBarHeight));
                 }
@@ -151,5 +164,6 @@ public class CustomScrollBarScrollLayout extends FrameLayout {
         super.onDetachedFromWindow();
         mHandler.removeCallbacksAndMessages(null);
         mHandler = null;
+        mIsOnLayout = true;
     }
 }
