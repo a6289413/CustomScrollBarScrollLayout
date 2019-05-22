@@ -4,4 +4,10 @@
         <attr name="scrollBar" format="reference"></attr>
         <attr name="scrollBarMarginScrollView" format="dimension"></attr>
     </declare-styleable>
+
+
+    <declare-styleable name="CustomScrollBarScrollView">
+        <attr name="scrollBar" format="reference" />
+        <attr name="scrollbarMarginContent" format="dimension" />
+    </declare-styleable>
 </resources>
