@@ -1,0 +1,2 @@
+# CustomScrollBarScrollLayout
+此工程包含两个(scrolllayout包和widget包)自定义view, 两个自定义view都可以自定义ScrollView的ScrollBar的长短， 解决了系统默认ScrollView包裹内容太长导致ScrollBar短的问题
